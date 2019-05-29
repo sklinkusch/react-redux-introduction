@@ -20,6 +20,9 @@ export default class App extends Component {
       Storage.set(this.storageKey, JSON.stringify(this.state));
     }
   }
+  componentDidUpdate() {
+    Storage.set(this.storageKey, JSON.stringify(this.state));
+  }
   addToDo = text => {
     const todo = {
       uuid: uuid(),
