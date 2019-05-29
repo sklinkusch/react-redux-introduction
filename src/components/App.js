@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import Header from './Header';
-import ToDoList from './ToDoList';
-import { getRandomTagline } from '../helpers';
 import ToDoForm from './ToDoForm';
+import ToDoList from './ToDoList';
+import ToDoFilter from './ToDoFilter';
 import uuid from "uuid/v4";
 import Storage from "../modules/Storage";
+import { getRandomTagline } from '../helpers';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.storageKey = "react-todo";
+    this.storageKey = this.props.storageKey || "react-todo";
     const old = Storage.get(this.storageKey);
     if (old) {
       this.state = JSON.parse(old);
     } else {
       this.state = {
-        toDoItems: {}
+        toDoItems: {},
+        filter: "undone"
       };
       Storage.set(this.storageKey, JSON.stringify(this.state));
     }
@@ -53,13 +55,24 @@ export default class App extends Component {
       return state;
     });
   };
+  setFilter = filter => {
+    this.setState(state => {
+      state.filter = filter;
+      return state;
+    })
+  }
   render() {
     return (
       <div className="container">
         <Header tagline={getRandomTagline()} />
         <ToDoForm addToDo={this.addToDo} />
+        <ToDoFilter
+          activeFilter={this.state.filter}
+          setFilter={this.setFilter}
+        />
         <ToDoList
           items={this.state.toDoItems}
+          filter={this.state.filter}
           updateToDoText={this.updateToDoText}
           toggleToDoDone={this.toggleToDoDone}
           removeToDo={this.removeToDo}
