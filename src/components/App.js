@@ -4,12 +4,20 @@ import ToDoList from './ToDoList';
 import { getRandomTagline } from '../helpers';
 import ToDoForm from './ToDoForm';
 import uuid from "uuid/v4";
+import Storage from "../modules/Storage";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      toDoItems: {}
+    this.storageKey = "react-todo";
+    const old = Storage.get(this.storageKey);
+    if (old) {
+      this.state = JSON.parse(old);
+    } else {
+      this.state = {
+        toDoItems: {}
+      };
+      Storage.set(this.storageKey, JSON.stringify(this.state));
     }
   }
   addToDo = text => {
