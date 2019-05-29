@@ -2,12 +2,26 @@ import React, { Component } from 'react'
 import ToDoItem from './ToDoItem';
 
 export default class ToDoList extends Component {
+  filteredItems = () => {
+    const filtered = [];
+    for (const uuid in this.props.items) {
+      const item = this.props.items[uuid];
+      if (
+        this.props.filter === "all" ||
+        (this.props.filter === "done" && item.done === true) ||
+        (this.props.filter === "undone" && item.done === false)
+      ) {
+        filtered.push(item);
+      }
+    }
+    return filtered;
+  }
   render() {
     return (
       <div className="todo-list">
         <table className="todo-items table table-borderless">
           <tbody>
-            {Object.keys(this.props.items).map(uuid => (
+            {this.filteredItems().map(uuid => (
               <ToDoItem
                 key={`todo-item-${uuid}`}
                 data={this.props.items[uuid]}
