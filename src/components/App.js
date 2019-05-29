@@ -5,6 +5,12 @@ import { getRandomTagline } from '../helpers';
 import ToDoForm from './ToDoForm';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toDoItems: {}
+    }
+  }
   render() {
     return (
       <div className="container">
