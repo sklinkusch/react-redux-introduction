@@ -27,7 +27,7 @@ export default class App extends Component {
       <div className="container">
         <Header tagline={getRandomTagline()} />
         <ToDoForm addToDo={this.addToDo} />
-        <ToDoList />
+        <ToDoList items={this.state.toDoItems} />
       </div>
     )
   }
