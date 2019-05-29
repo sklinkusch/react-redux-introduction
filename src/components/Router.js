@@ -9,9 +9,9 @@ const Router = () => (
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/help" component={Help} />
-      <Route component={NotFound}
-  </Switch>
+      <Route component={NotFound} />
+    </Switch>
   </BrowserRouter>
-    );
-    
+);
+
 export default Router;
