@@ -29,6 +29,13 @@ export default class App extends Component {
       return state;
     });
   };
+  toggleToDoDone = event => {
+    const checkbox = event.target;
+    this.setState(state => {
+      state.toDoItems[checkbox.value].done = checkbox.checked;
+      return state;
+    });
+  };
   render() {
     console.log(this.state.toDoItems);
     return (
