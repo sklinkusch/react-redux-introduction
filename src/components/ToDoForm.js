@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class ToDoForm extends Component {
-  handleSubmit() {
+  handleSubmit(e) {
     e.preventDefault();
     console.log("Create new item");
   }
