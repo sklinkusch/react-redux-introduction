@@ -20,9 +20,11 @@ export default class App extends Component {
     };
     this.setState(state => {
       state.toDoItems[todo.uuid] = todo;
+      return state;
     });
   };
   render() {
+    console.log(this.state.toDoItems);
     return (
       <div className="container">
         <Header tagline={getRandomTagline()} />
