@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addToDo } from '../actions/'
 
-export default class ToDoForm extends Component {
+class ToDoForm extends Component {
   textInput = React.createRef();
   handleSubmit = (e) => {
     e.preventDefault();
@@ -11,13 +13,23 @@ export default class ToDoForm extends Component {
   render() {
     return (
       <form className="input-group my-3" onSubmit={this.handleSubmit}>
-        <input className="form-control" type="text" placeholder="Add a new to-do item ..." ref={this.textInput} />
+        <input
+          className="form-control"
+          name="name"
+          type="text"
+          placeholder="Add a new to-do item ..."
+          ref={this.textInput}
+        />
         <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="submit">
             <i className="fas fa-plus" aria-hidden="true" />&nbsp;Add item
           </button>
         </div>
       </form>
-    )
+    );
   }
 }
+
+export default connect(state => ({}), {
+  addToDo
+})(ToDoForm);
