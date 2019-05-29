@@ -21,10 +21,10 @@ export default class ToDoList extends Component {
       <div className="todo-list">
         <table className="todo-items table table-borderless">
           <tbody>
-            {this.filteredItems().map(uuid => (
+            {this.filteredItems().map(item => (
               <ToDoItem
-                key={`todo-item-${uuid}`}
-                data={this.props.items[uuid]}
+                key={`todo-item-${item.uuid}`}
+                data={item}
                 updateToDoText={this.props.updateToDoText}
                 toggleToDoDone={this.props.toggleToDoDone}
                 removeToDo={this.props.removeToDo}
