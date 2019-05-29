@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 
 export default class ToDoForm extends Component {
-  constructor(props) {
-    super(props);
-    // hard binding if handleSubmit is not an arrow function
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
   textInput = React.createRef();
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Create new item: ${this.textInput.current.value}`);
+    const text = this.textInput.current.value.trim();
+    this.props.addToDo(text);
+    e.currentTarget.reset();
   }
   render() {
     return (
