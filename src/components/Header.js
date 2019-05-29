@@ -7,7 +7,7 @@ export default class Header extends Component {
         <h1>
           What to do?
       </h1>
-        <span className="tagline">This could be your bucket list.</span>
+        <span className="tagline">{this.props.tagline}</span>
       </header>
     )
   }
