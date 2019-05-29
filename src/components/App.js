@@ -36,6 +36,12 @@ export default class App extends Component {
       return state;
     });
   };
+  removeToDo = uuid => {
+    this.setState(state => {
+      delete state.toDoItems[uuid];
+      return state;
+    });
+  };
   render() {
     console.log(this.state.toDoItems);
     return (
