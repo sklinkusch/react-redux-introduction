@@ -23,6 +23,12 @@ export default class App extends Component {
       return state;
     });
   };
+  updateToDoText = (uuid, text) => {
+    this.setState(state => {
+      state.toDoItems[uuid].text = text;
+      return state;
+    });
+  };
   render() {
     console.log(this.state.toDoItems);
     return (
