@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { filters, setFilter } from '../actions/'
 
-export default class ToDoFilter extends Component {
+class ToDoFilter extends Component {
   filters = ["all", "undone", "done"];
   render() {
     return (
@@ -10,19 +12,32 @@ export default class ToDoFilter extends Component {
           role="group"
           aria-label="Set a filter to show items"
         >
-          {this.filters.map(filter => (
-            <button
-              className={`btn btn-light ${
-                this.props.activeFilter === filter ? "active" : ""
-                }`}
-              onClick={e => {
-                this.props.setFilter(filter);
-              }}
-              key={filter}
-            >{filter}</button>
-          ))}
+          {Object.keys(filters).map(filterKey => {
+            const filter = filters[filterKey];
+            return (
+              <button
+                type="button"
+                className={`btn btn-light ${
+                  this.props.filter === filter ? "active" : ""
+                  }`}
+                onClick={e => {
+                  this.props.setFilter(filter);
+                }}
+                key={filterKey}
+              >{filter}</button>
+            );
+          })}
         </div>
       </div>
     );
   }
 }
+
+export default connect(
+  state => ({
+    filter: state.filter
+  }),
+  {
+    setFilter
+  }
+)(ToDoFilter);
