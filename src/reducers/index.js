@@ -26,10 +26,9 @@ function toDoItems(state = {}, action) {
     case actions.UPDATE_TODO_TEXT:
       return {
         ...state,
-        [id]: {
-          uuid: id,
-          text: action.text,
-          done: false
+        [action.uuid]: {
+          ...state[action.uuid],
+          text: action.text
         }
       };
     case actions.TOGGLE_TODO:
