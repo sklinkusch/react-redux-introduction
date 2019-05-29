@@ -43,13 +43,17 @@ export default class App extends Component {
     });
   };
   render() {
-    console.log(this.state.toDoItems);
     return (
       <div className="container">
         <Header tagline={getRandomTagline()} />
         <ToDoForm addToDo={this.addToDo} />
-        <ToDoList items={this.state.toDoItems} />
+        <ToDoList
+          items={this.state.toDoItems}
+          updateToDoText={this.updateToDoText}
+          toggleToDoDone={this.toggleToDoDone}
+          removeToDo={this.removeToDo}
+        />
       </div>
-    )
+    );
   }
 }
