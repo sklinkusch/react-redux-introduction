@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 export default class ToDoForm extends Component {
+  constructor(props) {
+    super(props);
+    // hard binding if handleSubmit is not an arrow function
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   handleSubmit(e) {
     e.preventDefault();
     console.log("Create new item");
